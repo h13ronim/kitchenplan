@@ -73,7 +73,7 @@ module Kitchenplan
 
       def run_chef(targetdir, recipes, solo_rb, debug=false)
         inside("#{targetdir}/kitchenplan") do
-          dorun "sudo vendor/bin/chef-solo #{( debug ? ' --log_level debug' : ' ' )} -c #{solo_rb} -j tmp/kitchenplan-attributes.json -o #{recipes.join(',')}"
+          dorun "sudo chef-solo #{( debug ? ' --log_level debug' : ' ' )} -c #{solo_rb} -j tmp/kitchenplan-attributes.json -o #{recipes.join(',')}"
         end
       end
 
@@ -204,9 +204,9 @@ module Kitchenplan
         osx_ver = dorun('sw_vers -productVersion | awk -F "." \'{print $2}\'', true).to_i
         if osx_ver >= 9
           dorun('touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress')
-          prod = dorun('$(softwareupdate -l | grep "\*.*Command Line" | head -n 1 | awk -F"*" \'{print $2}\' | sed -e \'s/^ *//\' | tr -d \'\n\')', true)
+          prod = dorun('softwareupdate -l | grep -B 1 "Developer" | head -n 1 | awk -F"*" \'{print $2}\'', true)
           dorun("softwareupdate -i #{prod.chomp} -v")
-          dorun("rm -f /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress")
+          #dorun("sudo xcodebuild -license")
         else
           dmg = nil
           if osx_ver == 7

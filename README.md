@@ -1,5 +1,3 @@
-**[I've recently released a new, cleaner, faster solution based on Ansible. Please read about it in this blog post](http://vanderveer.be/2015/09/27/using-ansible-to-automate-osx-installs-via-superlumic.html)**
-
 # Kitchenplan
 
 Kitchenplan is a small tool to fully automate the installation and configuration of an OSX workstation (or server for that matter) using Chef. But while doing so manually is not a trivial undertaking, Kitchenplan has abstracted away all the hard parts.
@@ -37,7 +35,7 @@ Next up we can start the setup of Kitchenplan. Just run `kitchenplan setup` and 
 Do you have a config repository? [y,n] n
 ```
 
-If this is your first install using v2.1 of Kitchenplan, your aswer will be no. By doing so Kitchenplan will setup '/opt', create the kitchenplan folder structure, setup a bare configuration and put it all in a local git repository. Put this repository on Github (or any git server) and get to working on the configuration files.
+If this is you first install using v2.1 of Kitchenplan, your aswer will be no. By doing so Kitchenplan will setup '/opt', create the kitchenplan folder structure, setup a bare configuration and put it all in a local git repository. Put this repository on Github (or any git server) and get to working on the configuration files.
 
 ```
 -> Making sure /opt exists and I can write to it
